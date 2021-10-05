@@ -3,9 +3,17 @@ import CountriesList from '@components/homePage/cardList/countriesList';
 import { ChangeEvent, FC, useState } from 'react';
 import CardType from '@root/@types/CardType';
 import SearchInput from '@components/homePage/searchInput/searchInput';
+import SelectInput from '@components/homePage/selectInput/selectInput';
 
 const Wrapper = styled.section`
   margin-top: 50px;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 5rem;
 `;
 
 const HomePageMainSection: FC<{ data: CardType[] }> = ({ data }) => {
@@ -25,7 +33,10 @@ const HomePageMainSection: FC<{ data: CardType[] }> = ({ data }) => {
 
   return (
     <Wrapper>
-      <SearchInput value={searchValue} onChange={handleChange} />
+      <InputWrapper>
+        <SearchInput value={searchValue} onChange={handleChange} />
+        <SelectInput />
+      </InputWrapper>
       <CountriesList data={countries} />
     </Wrapper>
   );

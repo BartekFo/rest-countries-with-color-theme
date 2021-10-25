@@ -1,5 +1,6 @@
 type CountriesResponseType = {
   name: string;
+  nativeName: string;
   topLevelDomain: [string];
   capital: string;
   subregion: string;

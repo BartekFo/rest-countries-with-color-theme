@@ -9,6 +9,10 @@ class RestCountriesClient {
   getAllCountries() {
     return this.api.get<CountriesResponseType>('/all').then((res) => res.data);
   }
+
+  getSpecificCountry(countryName: string | string[] | undefined) {
+    return this.api.get<CountriesResponseType>(`/name/${countryName}`).then((res) => res.data);
+  }
 }
 
 const RestCountriesApi = new RestCountriesClient();

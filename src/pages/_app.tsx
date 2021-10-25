@@ -1,9 +1,8 @@
 import { FunctionComponent } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-
-import GlobalStyles from '@styles/GlobalStyles';
-import Provider from '@utils/Provider';
+import { ThemeProvider } from 'next-themes';
+import '@styles/globals.css';
 
 const App: FunctionComponent<AppProps> = (props) => {
   const { Component, pageProps } = props;
@@ -17,15 +16,14 @@ const App: FunctionComponent<AppProps> = (props) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;500;600;800&display=swap"
           rel="stylesheet"
         />
       </Head>
-      <Provider>
+      <ThemeProvider enableSystem attribute="class">
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
-        <GlobalStyles />
-      </Provider>
+      </ThemeProvider>
     </>
   );
 };

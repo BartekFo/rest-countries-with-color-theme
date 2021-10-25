@@ -1,60 +1,91 @@
-import styled from 'styled-components';
-import { getBoxShadow, getColor } from '@styles/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { ChangeEvent, FC, useState } from 'react';
 
-const Wrapper = styled.div`
-  position: relative;
-`;
+const SelectInput: FC<{ onChange: (region: string) => void }> = ({ onChange }) => {
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-const Select = styled.select`
-  background: ${getColor('elementsColor')};
-  color: ${getColor('inputText')};
-  border: none;
-  padding: 20px 4rem 20px 30px;
-  box-shadow: ${getBoxShadow('navbar')};
-  border-radius: 5px;
-  outline: none;
+  const toggleSelect = () => {
+    setIsSelectOpen((prevState) => !prevState);
+  };
 
-  & > option {
-    border: 1px solid red;
-  }
-`;
+  const selectOption = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.id);
+    toggleSelect();
+  };
 
-const CustomArrow = styled.span`
-  top: 0;
-  right: 0;
-  position: absolute;
-  background: ${getColor('elementsColor')};
-  height: 100%;
-  width: 4rem;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    height: 25%;
-  }
-`;
-
-const SelectInput = () => (
-  <Wrapper>
-    <Select>
-      <option value="" disabled selected hidden>
-        Filter by Region
-      </option>
-      <option value="All">All</option>
-      <option value="Africa">Africa</option>
-      <option value="America">America</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Oceania">Oceania</option>
-    </Select>
-    <CustomArrow>
-      <FontAwesomeIcon icon={faChevronDown} />
-    </CustomArrow>
-  </Wrapper>
-);
+  return (
+    <div>
+      <button
+        type="button"
+        className="flex w-72 flex-col relative"
+        onClick={toggleSelect}
+        onKeyDown={toggleSelect}
+      >
+        <div className={isSelectOpen ? 'option-container active' : 'option-container'}>
+          <div className="option">
+            <input className="radio" type="radio" name="region" id="all" onChange={selectOption} />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="all">
+              All
+            </label>
+          </div>
+          <div className="option">
+            <input
+              className="radio"
+              type="radio"
+              name="region"
+              id="africa"
+              onChange={selectOption}
+            />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="africa">
+              Africa
+            </label>
+          </div>
+          <div className="option">
+            <input
+              className="radio"
+              type="radio"
+              name="region"
+              id="america"
+              onChange={selectOption}
+            />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="america">
+              America
+            </label>
+          </div>
+          <div className="option">
+            <input className="radio" type="radio" name="region" id="asia" onChange={selectOption} />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="asia">
+              Asia
+            </label>
+          </div>
+          <div className="option">
+            <input
+              className="radio"
+              type="radio"
+              name="region"
+              id="europe"
+              onChange={selectOption}
+            />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="europe">
+              Europe
+            </label>
+          </div>
+          <div className="option">
+            <input
+              className="radio"
+              type="radio"
+              name="region"
+              id="oceania"
+              onChange={selectOption}
+            />
+            <label className="cursor-pointer block w-full h-full py-3 px-6" htmlFor="oceania">
+              Oceania
+            </label>
+          </div>
+        </div>
+        <div className="selected">Filter by Region</div>
+      </button>
+    </div>
+  );
+};
 
 export default SelectInput;

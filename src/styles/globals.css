@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+@layer base {
+    body {
+        @apply bg-lightBackgroundColor text-lightText dark:bg-darkBackgroundColor dark:text-darkText;
+        @apply min-h-screen;
+        @apply transition-colors;
+    }
+
+    .theme-toggle-btn {
+        @apply flex justify-around items-center cursor-pointer h-full text-lightText gap-2.5 text-sm font-semibold;
+        @apply md:text-base;
+        @apply dark:text-darkText;
+    }
+
+    .card-paragraph {
+        @apply px-6 mb-1 text-lightInputText dark:text-darkInputText
+    }
+
+    .card-span {
+        @apply font-semibold text-lightText dark:text-darkText
+    }
+
+    .option-container {
+        @apply bg-lightElementColor text-lightText w-full shadow-md rounded-md overflow-hidden transition-all order-1 absolute top-14;
+        @apply max-h-0 opacity-0;
+        @apply dark:bg-darkElementColor dark:text-darkText;
+    }
+
+    .option-container.active {
+        @apply max-h-96 opacity-100 z-10
+    }
+
+    .selected {
+        @apply bg-lightElementColor text-lightText rounded-md shadow-md mb-2 relative order-first w-full text-left cursor-pointer py-3 px-6;
+        @apply dark:bg-darkElementColor dark:text-darkText;
+    }
+
+    .selected::after {
+        content: "";
+        @apply bg-arrowDown bg-contain bg-no-repeat absolute h-full w-8 right-2.5 top-2 transition-transform duration-300
+    }
+
+    .option-container.active + .selected::after {
+        @apply transform rotate-180 -top-2
+    }
+
+    .option {
+        @apply hover:bg-gray-800
+    }
+
+    .radio {
+        @apply hidden
+    }
+}

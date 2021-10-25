@@ -1,5 +1,5 @@
 import Navbar from '@components/navbar/navbar';
-import filterAllCountries from '@api/dataFilters/restCountriesFilters';
+import { filterAllCountries } from '@api/dataFilters/restCountriesFilters';
 import { NextPage } from 'next';
 import CardType from '@root/@types/CardType';
 import HomePageMainSection from '@components/homePage/homePageMainSection';

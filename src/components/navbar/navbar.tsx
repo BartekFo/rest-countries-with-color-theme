@@ -1,77 +1,54 @@
-import styled from 'styled-components';
-import { getBoxShadow, getColor, getFontWeight, getMedias } from '@styles/utils';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon as solidFaMoon } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
-import useDarkMode from 'use-dark-mode';
-
-const Wrapper = styled.nav`
-  height: 85px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 1rem;
-  background: ${getColor('elementsColor')};
-  box-shadow: ${getBoxShadow('navbar')};
-
-  h1 {
-    font-size: 1rem;
-    font-weight: ${getFontWeight('semiBold')};
-  }
-
-  @media (min-width: ${getMedias('tablet')}) {
-    padding-inline: 5rem;
-
-    h1 {
-      font-size: 2rem;
-    }
-  }
-`;
-
-const Button = styled.button`
-  background: none;
-  outline: none;
-  border: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  cursor: pointer;
-  height: 100%;
-  color: ${getColor('text')};
-  gap: 10px;
-  font-weight: ${getFontWeight('regular')};
-  font-size: 0.8rem;
-  letter-spacing: 0.05rem;
-
-  svg {
-    height: 15%;
-    transform: rotate(-20deg);
-  }
-
-  @media (min-width: ${getMedias('tablet')}) {
-    font-size: 1rem;
-
-    svg {
-      height: 20%;
-    }
-  }
-`;
+import { useTheme } from 'next-themes';
 
 const Navbar = () => {
-  const darkMode = useDarkMode(false);
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const renderThemeChanger = () => {
+    if (!isMounted) return null;
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+
+    if (currentTheme === 'dark') {
+      return (
+        <button className="theme-toggle-btn" type="button" onClick={() => setTheme('light')}>
+          <FontAwesomeIcon icon={solidFaMoon} className="transform -rotate-12 h-4" />
+          Light Mode
+        </button>
+      );
+    }
+
+    return (
+      <button className="theme-toggle-btn" type="button" onClick={() => setTheme('dark')}>
+        <FontAwesomeIcon icon={faMoon} className="transform -rotate-12 h-4" />
+        Dark Mode
+      </button>
+    );
+  };
 
   return (
-    <Wrapper>
-      <h1>Where in the world?</h1>
-      <Button type="button" onClick={darkMode.toggle}>
-        {darkMode.value ? (
-          <FontAwesomeIcon icon={solidFaMoon} />
-        ) : (
-          <FontAwesomeIcon icon={faMoon} />
-        )}
-        Dark Mode
-      </Button>
-    </Wrapper>
+    <nav
+      className="
+      bg-lightElementColor shadow-md flex justify-center
+      dark:bg-darkElementColor
+      "
+    >
+      <div className="max-w-screen-2xl w-full flex justify-between items-center py-7 mx-4 md:mx-20 md:py-5">
+        <Link href="/">
+          <h1 className="text-base font-bold md:text-2xl cursor-pointer">Where in the world?</h1>
+        </Link>
+        {renderThemeChanger()}
+      </div>
+    </nav>
   );
 };
 

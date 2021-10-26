@@ -35,7 +35,7 @@ body {
     }
 
     .option-container {
-        @apply bg-lightElementColor text-lightText w-full shadow-md rounded-md overflow-hidden transition-all order-1 absolute top-14;
+        @apply bg-lightElementColor text-lightText w-full shadow-md rounded-md overflow-hidden transition-all order-1 absolute top-20;
         @apply max-h-0 opacity-0;
         @apply dark:bg-darkElementColor dark:text-darkText;
     }
@@ -45,7 +45,7 @@ body {
     }
 
     .selected {
-        @apply bg-lightElementColor text-lightText rounded-md shadow-md mb-2 relative order-first w-full text-left cursor-pointer py-3 px-6;
+        @apply bg-lightElementColor text-lightText rounded-md shadow-md relative order-first w-full text-left cursor-pointer py-5 px-6;
         @apply dark:bg-darkElementColor dark:text-darkText;
     }
 

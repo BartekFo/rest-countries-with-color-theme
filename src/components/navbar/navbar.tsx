@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon as solidFaMoon } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
@@ -43,7 +42,7 @@ const Navbar = () => {
       "
     >
       <div className="max-w-screen-2xl w-full flex justify-between items-center py-7 mx-4 md:mx-20 md:py-5">
-        <Link href="/">
+        <Link href="/" passHref>
           <h1 className="text-base font-bold md:text-2xl cursor-pointer">Where in the world?</h1>
         </Link>
         {renderThemeChanger()}

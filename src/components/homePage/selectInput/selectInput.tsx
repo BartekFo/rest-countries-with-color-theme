@@ -16,7 +16,7 @@ const SelectInput: FC<{ onChange: (region: string) => void }> = ({ onChange }) =
     <div>
       <button
         type="button"
-        className="flex w-72 flex-col relative"
+        className="flex w-72 flex-col relative mt-12 lg:mt-0"
         onClick={toggleSelect}
         onKeyDown={toggleSelect}
       >

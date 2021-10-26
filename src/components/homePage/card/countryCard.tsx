@@ -14,7 +14,7 @@ const CountryCard: FunctionComponent<{
     <Link href={`/${name}`} passHref>
       <div
         className="
-      bg-lightElementColor shadow-md rounded-md w-9/12 max-w-xs
+      bg-lightElementColor shadow-md rounded-md w-9/12 max-w-xs cursor-pointer
       dark:bg-darkElementColor
       "
       >

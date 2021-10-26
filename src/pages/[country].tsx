@@ -1,14 +1,22 @@
 import React from 'react';
-import Navbar from '@components/navbar/navbar';
-import { GetStaticProps } from 'next';
-import { filterSpecificCountry } from '@api/dataFilters/restCountriesFilters';
+import { GetStaticProps, NextPage } from 'next';
 
-const Country = ({ country }) => {
-  console.log(country);
+import Navbar from '@components/navbar/navbar';
+import {
+  filterBordersCountries,
+  filterSpecificCountry,
+} from '@api/dataFilters/restCountriesFilters';
+import CountryPageType from '@root/@types/CountryPageType';
+import CountryPageMain from '@components/countryPage/CountryPageMain';
+
+const Country: NextPage<{ country: CountryPageType; borderCountriesNames: string[] }> = ({
+  country,
+  borderCountriesNames,
+}) => {
   return (
     <>
       <Navbar />
-      <h1>{}</h1>
+      <CountryPageMain country={country} borderCountriesNames={borderCountriesNames} />
     </>
   );
 };
@@ -32,11 +40,17 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const country = await filterSpecificCountry(context.params!.country);
+  const countryName = context.params!.country;
+
+  const countryArr = await filterSpecificCountry(countryName);
+  const country = countryArr![0];
+  const borderCountriesNames = await filterBordersCountries(country.bordersArr);
+
   return {
     props: {
       country,
-    }, // will be passed to the page component as props
+      borderCountriesNames,
+    },
   };
 };
 

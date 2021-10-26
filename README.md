@@ -34,7 +34,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution URL](https://your-solution-url.com)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/rest-countries-api-with-tailwind-nextjs-and-typescript-wG5sqEKDT)
 - Live Site URL: [Live site URL](https://rest-countries-with-color-theme.vercel.app/)
 
 ## My process

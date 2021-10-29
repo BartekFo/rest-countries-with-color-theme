@@ -16,9 +16,6 @@ module.exports = {
       spacing: {
         aspectRatio: '56.25%',
       },
-      backgroundImage: {
-        arrowDown: "url('/assets/arrowDown.svg')",
-      },
     },
   },
   variants: {

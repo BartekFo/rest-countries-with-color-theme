@@ -11,7 +11,7 @@ const HomePageMainSection: FC<{ data: CardType[] }> = ({ data }) => {
   const [countries, setCountries] = useState(data);
 
   const selectRegion = (region: string) => {
-    if (region === 'all') {
+    if (region === 'All') {
       setCountries(data);
     } else {
       const filteredCountriesByRegion = data.filter((country) => {

@@ -49,15 +49,6 @@ body {
         @apply dark:bg-darkElementColor dark:text-darkText;
     }
 
-    .selected::after {
-        content: "";
-        @apply bg-arrowDown bg-contain bg-no-repeat absolute h-full w-8 right-2.5 top-2 transition-transform duration-300
-    }
-
-    .option-container.active + .selected::after {
-        @apply transform rotate-180 -top-2
-    }
-
     .option {
         @apply hover:bg-gray-800
     }

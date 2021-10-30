@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from 'react';
-import { toLower } from 'lodash';
+import { toLower, kebabCase } from 'lodash';
 
 import CountriesList from '@components/homePage/cardList/countriesList';
 import CardType from '@root/@types/CardType';
@@ -29,7 +29,9 @@ const HomePageMainSection: FC<{ data: CardType[] }> = ({ data }) => {
     if (e && e.target) setSearchValue(e.target.value);
 
     if (e.target.value !== '') {
-      const filteredCountries = data.filter((country) => country.name.includes(e.target.value));
+      const filteredCountries = data.filter((country) =>
+        kebabCase(country.name).includes(kebabCase(e.target.value)),
+      );
       setCountries(filteredCountries);
     } else {
       setCountries(data);

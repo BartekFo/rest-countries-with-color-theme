@@ -26,7 +26,7 @@ const SelectInput: FC<{ onChange: (region: string) => void }> = ({ onChange }) =
       >
         <div className={isSelectOpen ? 'option-container active' : 'option-container'}>
           {selectOptionsArr.map((option) => (
-            <div className="option">
+            <div className="option" key={option}>
               <input
                 className="radio"
                 type="radio"
